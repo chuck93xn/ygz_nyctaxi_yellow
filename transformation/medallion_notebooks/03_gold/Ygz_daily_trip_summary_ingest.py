@@ -1,11 +1,20 @@
 # Databricks notebook source
+import os
+import sys
+from pathlib import Path
+
+PROJECT_ROOT = Path(__file__).resolve().parents[2] 
+if str(PROJECT_ROOT) not in sys.path:
+    sys.path.append(str(PROJECT_ROOT))
+
 from pyspark.sql.functions import count, max, min, avg, sum, round
 from dateutil.relativedelta import relativedelta
 from datetime import date
+from modules.utils.date_utils import get_month_start_n_months_ago
 
 # COMMAND ----------
 
-start_date = date.today().replace(day=1) - relativedelta(months=2)
+start_date = get_month_start_n_months_ago(2)
 df = spark.read.table("nyctaxi_ygz.`02_silver`.yellow_trips_enriched").filter(f"pickup_datetime > '{start_date}'")
 
 # COMMAND ----------

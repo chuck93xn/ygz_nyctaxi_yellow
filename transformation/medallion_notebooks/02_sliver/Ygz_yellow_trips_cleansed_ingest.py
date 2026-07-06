@@ -1,12 +1,22 @@
 # Databricks notebook source
+import os
+import sys
+from pathlib import Path
+
+PROJECT_ROOT = Path(__file__).resolve().parents[2] 
+if str(PROJECT_ROOT) not in sys.path:
+    sys.path.append(str(PROJECT_ROOT))
+
+
 from datetime import date
 from dateutil.relativedelta import relativedelta
 from pyspark.sql.functions import col, when, min, max, expr
+from modules.utils.date_utils import get_month_start_n_months_ago
 
 # COMMAND ----------
 
-start_date = date.today().replace(day=1) - relativedelta(months=2)
-end_date = date.today().replace(day=1) - relativedelta(months=1)
+start_date = get_month_start_n_months_ago(2)
+end_date = get_month_start_n_months_ago(1)
 
 # COMMAND ----------
 
