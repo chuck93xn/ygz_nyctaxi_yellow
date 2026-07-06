@@ -3,9 +3,16 @@ import os
 import sys
 from pathlib import Path
 
-PROJECT_ROOT = Path(__file__).resolve().parents[2] 
-if str(PROJECT_ROOT) not in sys.path:
-    sys.path.append(str(PROJECT_ROOT))
+def setup_project_path():
+    try:
+        project_root = Path(__file__).resolve().parents[2]
+        if str(project_root) not in sys.path:
+            sys.path.append(str(project_root))
+        return project_root
+    except NameError:
+
+        return None
+PROJECT_ROOT = setup_project_path()
 
 import urllib.request
 import shutil
