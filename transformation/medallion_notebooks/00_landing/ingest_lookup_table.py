@@ -27,6 +27,3 @@ try:
 except Exception as e:
     dbutils.jobs.taskValues.set(key="continue_downstream", value="no")
     print(f"File download failed: {str(e)}")
-
-# COMMAND ----------
-
