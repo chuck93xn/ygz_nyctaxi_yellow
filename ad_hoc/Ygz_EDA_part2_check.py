@@ -7,12 +7,6 @@ from pyspark.sql.functions import date_format, count, sum
 
 # COMMAND ----------
 
-df = spark.read.table("nyctaxi_ygz.`01_bronze`.yellow_trips_raw")
-df.printSchema()
-df.display()
-
-# COMMAND ----------
-
 (
     spark.read.table("nyctaxi_ygz.`01_bronze`.yellow_trips_raw")
     .groupBy(date_format("tpep_pickup_datetime", "yyyy-MM").alias("year_month"))
