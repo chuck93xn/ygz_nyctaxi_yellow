@@ -19,7 +19,8 @@ from datetime import date, datetime, timezone
 from pyspark.sql.functions import current_timestamp
 from dateutil.relativedelta import relativedelta
 from modules.utils.date_utils import get_target_yyyymm
-from modules.transformation_layers.metadata import add_processed_timestamp
+from modules.transformation_layers.metadata import add_processing_timestamp
+
 # COMMAND ----------
 
 formatted_date = get_target_yyyymm(2)
@@ -30,7 +31,7 @@ file_path = f"/Volumes/nyctaxi_ygz/00_landing/data_sources/nyctaxi_yellow/{forma
 # Read files for the specified month from the landing directory into a DataFrame
 df = spark.read.format("parquet").load(file_path)
 
-df = add_processed_timestamp(df)
+df = add_processing_timestamp(df)
 
 # COMMAND ----------
 

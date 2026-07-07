@@ -4,14 +4,14 @@ from pyspark.sql.functions import current_timestamp
 
 
 # ----------------------------------------------------------------------
-def add_processed_timestamp(df: DataFrame) -> DataFrame:
+def add_processing_timestamp(df: DataFrame) -> DataFrame:
     """
-    Adds a 'processed_timestamp' column to the DataFrame with the current timestamp.
+    Adds a 'processing_timestamp' column to the DataFrame with the current timestamp.
 
     Parameters:
         df (DataFrame): The input Spark DataFrame.
 
     Returns:
-        DataFrame: The DataFrame with an additional 'processed_timestamp' column.
+        DataFrame: The DataFrame with an additional 'processing_timestamp' column.
     """
-    return df.withColumn("processed_timestamp", current_timestamp())
+    return df.withColumn("processing_timestamp", current_timestamp())

@@ -1,5 +1,15 @@
 # Databricks notebook source
+# /// script
+# [tool.databricks.environment]
+# environment_version = "1"
+# ///
 from pyspark.sql.functions import date_format, count, sum
+
+# COMMAND ----------
+
+df = spark.read.table("nyctaxi_ygz.`01_bronze`.yellow_trips_raw")
+df.printSchema()
+df.display()
 
 # COMMAND ----------
 
