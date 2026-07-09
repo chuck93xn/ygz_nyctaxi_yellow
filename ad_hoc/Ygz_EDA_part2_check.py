@@ -47,4 +47,14 @@ from pyspark.sql.functions import date_format, count, sum
 
 # COMMAND ----------
 
+(
+    spark.read.table("nyctaxi_ygz.`04_export`.yellow_trips_export")
+    .groupBy("year_month")
+    .agg(count("*").alias("total_records"))
+    .orderBy("year_month")
+    .display()
+)
+
+# COMMAND ----------
+
 spark.read.table("nyctaxi_ygz.`02_silver`.taxi_zone_lookup").display()
